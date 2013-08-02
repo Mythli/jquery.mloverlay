@@ -99,10 +99,14 @@
     };
 
     $.fn.mlOpen = function() {
-        mlShowOverlay(this);
+        this.each(function() {
+            mlShowOverlay(this);
+        });
     };
 
     $.fn.mlClose = function() {
-        mlHideOverlay(this);
+        this.each(function() {
+            mlHideOverlay(this);
+        });
     };
 }( jQuery ));
