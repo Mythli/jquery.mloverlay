@@ -1,18 +1,18 @@
 (function ( $ ) {
-   function mlShowOverlay(overlay) {
-       var isOverlayVisible = $(overlay).data('mlIsOverlayVisible');
+    function mlShowOverlay(overlay) {
+        var isOverlayVisible = $(overlay).data('mlIsOverlayVisible');
 
-       if(!isOverlayVisible) {
-           var settings = $(overlay).data('mlOverlaySettings');
-           settings.onShow(overlay);
-           isOverlayVisible = true;
-           $(overlay).data('mlIsOverlayVisible', isOverlayVisible);
+        if(!isOverlayVisible) {
+            var settings = $(overlay).data('mlOverlaySettings');
+            settings.onShow(overlay);
+            isOverlayVisible = true;
+            $(overlay).data('mlIsOverlayVisible', isOverlayVisible);
 
-           if(settings.saveState) {
-               $.cookie('mlIsOverlayVisible', isOverlayVisible);
-           }
-       }
-   }
+            if(settings.saveState) {
+                $.cookie('mlIsOverlayVisible', isOverlayVisible);
+            }
+        }
+    }
 
     function mlHideOverlay(overlay) {
         var isOverlayVisible = $(overlay).data('mlIsOverlayVisible');
@@ -39,7 +39,7 @@
                 closeOnOutsideClick: true,
                 closeOnTargetClick: true,
                 closeOnEsc: true,
-                saveState: true,
+                saveState: false,
 
                 onShow: function(overlay) {
                     $(overlay).fadeIn();
@@ -58,7 +58,7 @@
             $(settings.target).click(function() {
                 var isOverlayVisible = $(elementReference).data('mlIsOverlayVisible');
 
-                if(isOverlayVisible == true) {
+                if(isOverlayVisible) {
                     if(settings.closeOnTargetClick) {
                         mlHideOverlay(elementReference);
                     }
@@ -86,7 +86,7 @@
             if(settings.saveState) {
                 if($.cookie != null) {
                     var isOverlayVisible = $.cookie('mlIsOverlayVisible');
-                    if(isOverlayVisible != false) {
+                    if(isOverlayVisible == 'true') {
                         mlShowOverlay(elementReference);
                     }
                 } else {

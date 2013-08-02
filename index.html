@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jquery.mloverlay demo</title>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.cookie.js"></script>
+    <script type="text/javascript" src="jquery.mloverlay.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#overlay').mlOverlay({
+                target: '#showOverlayButton',
+                ignore: '#ignoreButton',
+                saveState: true
+            })
+        });
+    </script>
+    <style>
+        body {
+            background-color: #25567B;
+        }
+
+        #container {
+            margin: 30px;
+        }
+
+        #overlay {
+            position: absolute;
+            display: none;
+            width: 400px;
+            padding: 5px;
+
+            color: #66A3D2;
+            background-color: #033E6B;
+    </style>
+</head>
+<body>
+    <div id="container">
+        <input id="showOverlayButton" type="submit" value="Show Overlay">
+        <input id="ignoreButton" type="submit" value="Swag">
+        <div style="margin-top: 3px;">
+            <div id="overlay">
+                <p> Because I'm just ... um .... I don't know. Why give an interview when
+                    you can leave a warning, you know? And one of those stupid mottoes, Alex,
+                    is 'Don't be special. Be one of us.' News flash! I am special, and I'll
+                    never be one of you! ... There it is.</p>
+
+                <p>You know, he might be Nails, but I'm frickin' bayonets, you know? I am
+                    battle-tested bayonets, bro.  But ... whatever. I agreed to do it. There's
+                    just one deal point that Jim Robinson - a wonderful man at Morgan Creek, a
+                    great company - need to work out is they want me in it. If they do, it's a
+                    smash. If they don't, it's a turd that opens on a tugboat.</p>
+
+                <p>You know, he might be Nails, but I'm frickin' bayonets, you know? I am
+                    battle-tested bayonets, bro. Yeah, but I can't use the word 'sober' because
+                    that's a term from 'those people', and I have cleansed myself.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
