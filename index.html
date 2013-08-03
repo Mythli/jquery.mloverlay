@@ -13,7 +13,9 @@
                 target: '#showOverlayButton',
                 ignore: '#ignoreButton',
                 saveState: true
-            })
+            });
+
+            $('#overlay').mlOverlay('show');
         });
     </script>
     <style>
@@ -38,8 +40,8 @@
 </head>
 <body>
     <div id="container">
-        <input id="showOverlayButton" type="submit" value="Show Overlay">
-        <input id="ignoreButton" type="submit" value="Swag">
+        <input id="showOverlayButton" type="submit" value="show overlay">
+        <input id="ignoreButton" type="submit" value="swag">
         <div style="margin-top: 3px;">
             <div id="overlay">
                 <p> Because I'm just ... um .... I don't know. Why give an interview when

@@ -1,4 +1,4 @@
 jquery.mloverlay
 ================
 
-Modal Less Overlay Plugin For jQuery
+A simple, lightweight jQuery plugin for showing modal less overlays.
