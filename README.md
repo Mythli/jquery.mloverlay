@@ -53,7 +53,7 @@ jQuery Selector. Clicks on matching elements show the overlay.
 **hideOnOutsideClick** *= true;*  
 Boolean. If true clicks outside the overlay will hide it.  
 
-**hideOnTargetCLick** *= true;*  
+**hideOnTargetClick** *= true;*  
 Boolean. If true clicks on the *target* toggle the overlay.  
 
 **hideOnEsc** = *true;*  
