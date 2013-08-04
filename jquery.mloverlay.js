@@ -55,10 +55,16 @@
                 }
                 settings.ignore += settings.target;
 
+                var oldSettings = $(_this).data('mlOverlaySettings');
+                if(oldSettings) {
+                    $(oldSettings.target).unbind('click.mlOverlay');
+                    $(document).unbind('click.mlOverlay');
+                    $(document).unbind('keyup.mlOverlay');
+                }
+
                 $(_this).data('mlOverlaySettings', settings);
                 $(_this).data('mlIsOverlayVisible', false);
 
-                $(settings.target).unbind('click.mlOverlay');
                 $(settings.target).bind('click.mlOverlay', function() {
                     var isOverlayVisible = $(_this).data('mlIsOverlayVisible');
 
@@ -71,7 +77,6 @@
                     }
                 });
 
-                $(document).unbind('click.mlOverlay');
                 if (settings.closeOnOutsideClick) {
                     $(document).bind('click.mlOverlay', function(e) {
                         if ($(e.target).closest(settings.ignore).length == 0 && $(e.target).closest(_this).length == 0) {
@@ -80,7 +85,6 @@
                     });
                 }
 
-                $(document).unbind('keyup.mlOverlay');
                 if(settings.closeOnEsc) {
                     $(document).bind('keyup.mlOverlay', function(e) {
                         if (e.keyCode == 27) {
