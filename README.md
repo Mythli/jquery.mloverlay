@@ -64,7 +64,7 @@ Boolean. If true overlay visibility is saved in a cookie variable.
 
 ### Functions
 
-**destroy** *$.mlOverlay('destroy');*
+**destroy** *$.mlOverlay('destroy');*  
 Destroys everything associated with the plugin (state, registered event listeners, cookies)
 
 **show** *$.mlOverlay('show');*  
