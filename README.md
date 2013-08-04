@@ -42,14 +42,19 @@ in Internet Explorer on Windows 7 for instance (because of the wrong MIME type).
 
 ### Parameters
 
+- **ignore**
+- **target**
+- **closeOnOutsideClick**
+- **closeOnTargetCLick**
+- **closeOnEsc**
+- **saveState**
+
 ### Functions
 
-## Typical Use Cases
+- **show**
+- **hide**
 
-**Change show and hide animation.**
+### Events
 
-$('#overlay').mlOverlay({
-  target: '#showOverlayButton',
-  ignore: '#ignoreButton',
-  saveState: true
-});
+- **onShow**
+- *onHide*
