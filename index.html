@@ -17,9 +17,11 @@
                     });
                 },
                 ignoreElements : function() {
+                    $('#ignoredButton').show();
+
                     $('#overlay').mlOverlay({
                         target: '#showOverlayButton',
-                        ignore: '#ignoreButton'
+                        ignore: '#ignoredButton'
                     });
                 },
                 manualTrigger: function() {
@@ -62,8 +64,8 @@
             };
 
             $('#usageType').change(function() {
-                var val = $(this).val();
-                exampleOverlays[val]();
+                $('#ignoredButton').hide();
+                exampleOverlays[$(this).val()]();
             });
 
             exampleOverlays.saveState();
@@ -101,7 +103,7 @@
         </select>
 
         <input id="showOverlayButton" type="submit" value="show overlay">
-        <input id="ignoreButton" type="submit" value="swag">
+        <input id="ignoredButton" style="display: none;" type="submit" value="ignored button">
         <div style="margin-top: 3px;">
             <div id="overlay">
                 <p> Because I'm just ... um .... I don't know. Why give an interview when
