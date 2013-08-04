@@ -12,13 +12,14 @@
         $(document).ready(function() {
             var exampleOverlays = {
                 basicOverlay : function() {
+                    $('#overlay').mlOverlay('destroy');
                     $('#overlay').mlOverlay({
                         target: '#showOverlayButton'
                     });
                 },
                 ignoreElements : function() {
+                    $('#overlay').mlOverlay('destroy');
                     $('#ignoredButton').show();
-
                     $('#overlay').mlOverlay({
                         target: '#showOverlayButton',
                         ignore: '#ignoredButton'
@@ -30,6 +31,7 @@
                 },
 
                 customAnimation: function() {
+                    $('#overlay').mlOverlay('destroy');
                     $('#overlay').mlOverlay({
                         target: '#showOverlayButton',
                         onShow: function(overlay) {
@@ -42,12 +44,14 @@
                     });
                 },
                 saveState: function() {
+                    $('#overlay').mlOverlay('destroy');
                     $('#overlay').mlOverlay({
                         target: '#showOverlayButton',
                         saveState: true
                     });
                 },
                 ajaxContent: function() {
+                    $('#overlay').mlOverlay('destroy');
                     $('#overlay').mlOverlay({
                         target: '#showOverlayButton',
                         onShow: function(overlay) {

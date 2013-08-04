@@ -3,7 +3,7 @@ jquery.mloverlay
 
 A simple, lightweight jQuery plugin for showing modal less overlays.
 
-[Try it out!](http://mloverlay.mythli.net)
+[Try it out now!](http://mloverlay.mythli.net)
 
 ## Installation
 
@@ -63,6 +63,9 @@ Boolean. If true pressing the escape key will hide the overlay.
 Boolean. If true overlay visibility is saved in a cookie variable.  
 
 ### Functions
+
+**destroy** *$.mlOverlay('destroy');*
+Destroys everything associated with the plugin (state, registered event listeners, cookies)
 
 **show** *$.mlOverlay('show');*  
 Shows the overlay.

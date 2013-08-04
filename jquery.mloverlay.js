@@ -1,31 +1,29 @@
 (function ( $ ) {
-    function hideOverlay(overlay) {
-        var isOverlayVisible = $(overlay).data('mlIsOverlayVisible');
+    var PLUGIN_IDENTIFIER = 'mlOverlay';
 
-        if(isOverlayVisible) {
-            var settings = $(overlay).data('mlOverlaySettings');
+    function hideOverlay(overlay) {
+        var settings = $(overlay).data(PLUGIN_IDENTIFIER);
+
+        if(settings._isVisible) {
             settings.onHide(overlay);
-            isOverlayVisible = false;
-            $(overlay).data('mlIsOverlayVisible', isOverlayVisible);
+            settings._isVisible = false;
 
             if(settings.saveState) {
-                $.cookie('mlIsOverlayVisible', isOverlayVisible);
+                $.cookie(PLUGIN_IDENTIFIER+'IsVisible', settings._isVisible);
             }
         }
 
     }
 
     function showOverlay(overlay) {
-        var isOverlayVisible = $(overlay).data('mlIsOverlayVisible');
+        var settings = $(overlay).data(PLUGIN_IDENTIFIER);
 
-        if(!isOverlayVisible) {
-            var settings = $(overlay).data('mlOverlaySettings');
+        if(!settings._isVisible) {
             settings.onShow(overlay);
-            isOverlayVisible = true;
-            $(overlay).data('mlIsOverlayVisible', isOverlayVisible);
+            settings._isVisible = true;
 
             if(settings.saveState) {
-                $.cookie('mlIsOverlayVisible', isOverlayVisible);
+                $.cookie(PLUGIN_IDENTIFIER+'IsVisible', settings._isVisible);
             }
         }
     }
@@ -48,25 +46,19 @@
                     },
                     onHide: function(overlay) {
                         $(overlay).fadeOut();
-                    }
+                    },
+
+                    _isVisible : false
                 }, options);
+
                 if (settings.ignore.length > 0) {
                     settings.ignore += ",";
                 }
                 settings.ignore += settings.target;
-
-                var oldSettings = $(_this).data('mlOverlaySettings');
-                if(oldSettings) {
-                    $(oldSettings.target).unbind('click.mlOverlay');
-                    $(document).unbind('click.mlOverlay');
-                    $(document).unbind('keyup.mlOverlay');
-                }
-
-                $(_this).data('mlOverlaySettings', settings);
-                $(_this).data('mlIsOverlayVisible', false);
+                $(_this).data(PLUGIN_IDENTIFIER, settings);
 
                 $(settings.target).bind('click.mlOverlay', function() {
-                    var isOverlayVisible = $(_this).data('mlIsOverlayVisible');
+                    var isOverlayVisible = settings._isVisible;
 
                     if(isOverlayVisible) {
                         if(settings.hideOnTargetClick) {
@@ -95,12 +87,27 @@
 
                 if(settings.saveState) {
                     if($.cookie != null) {
-                        var isOverlayVisible = $.cookie('mlIsOverlayVisible');
+                        var isOverlayVisible = $.cookie(PLUGIN_IDENTIFIER+'IsVisible');
                         if(isOverlayVisible == 'true') {
                             showOverlay(_this);
                         }
                     } else {
                         settings.saveState = false;
+                    }
+                }
+            });
+        },
+
+        destroy: function() {
+            this.each(function() {
+                var settings = $(this).data(PLUGIN_IDENTIFIER);
+                if(settings) {
+                    $(settings.target).unbind('click.mlOverlay');
+                    $(document).unbind('click.mlOverlay');
+                    $(document).unbind('keyup.mlOverlay');
+                    $(this).removeData();
+                    if(settings.saveState) {
+                        $.cookie(PLUGIN_IDENTIFIER+'IsVisible', null);
                     }
                 }
             });
@@ -121,7 +128,10 @@
         if ( methods[methodOrOptions] ) {
             return methods[ methodOrOptions ].apply( this, Array.prototype.slice.call( arguments, 1 ));
         } else if ( typeof methodOrOptions === 'object' || ! methodOrOptions ) {
-            return methods.init.apply( this, arguments );
+            // prevent re-initialization
+            if(!$(this).data(PLUGIN_IDENTIFIER)) {
+                return methods.init.apply( this, arguments );
+            }
         } else {
             $.error( 'Method ' +  method + ' does not exist on jQuery.mlOverlay' );
         }
