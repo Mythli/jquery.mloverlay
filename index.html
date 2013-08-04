@@ -8,14 +8,65 @@
     <script type="text/javascript" src="jquery.mloverlay.js"></script>
 
     <script type="text/javascript">
+
         $(document).ready(function() {
-            $('#overlay').mlOverlay({
-                target: '#showOverlayButton',
-                ignore: '#ignoreButton',
-                saveState: true
+            var exampleOverlays = {
+                basicOverlay : function() {
+                    $('#overlay').mlOverlay({
+                        target: '#showOverlayButton'
+                    });
+                },
+                ignoreElements : function() {
+                    $('#overlay').mlOverlay({
+                        target: '#showOverlayButton',
+                        ignore: '#ignoreButton'
+                    });
+                },
+                manualTrigger: function() {
+                    $('#overlay').mlOverlay('show');
+                    $('#overlay').mlOverlay('hide');
+                },
+
+                customAnimation: function() {
+                    $('#overlay').mlOverlay({
+                        target: '#showOverlayButton',
+                        onShow: function(overlay) {
+                            $(overlay).slideDown();
+                        },
+
+                        onHide: function(overlay) {
+                            $(overlay).slideUp();
+                        }
+                    });
+                },
+                saveState: function() {
+                    $('#overlay').mlOverlay({
+                        target: '#showOverlayButton',
+                        saveState: true
+                    });
+                },
+                ajaxContent: function() {
+                    $('#overlay').mlOverlay({
+                        target: '#showOverlayButton',
+                        onShow: function(overlay) {
+                            $(overlay).load('index.html', function() {
+                                $(overlay).fadeIn();
+                            });
+                        },
+
+                        onHide: function(overlay) {
+                            $(overlay).fadeOut();
+                        }
+                    });
+                }
+            };
+
+            $('#usageType').change(function() {
+                var val = $(this).val();
+                exampleOverlays[val]();
             });
 
-            $('#overlay').mlOverlay('show');
+            exampleOverlays.saveState();
         });
     </script>
     <style>
@@ -40,6 +91,14 @@
 </head>
 <body>
     <div id="container">
+        <select id="usageType" name="usageType">
+            <option value="basicOverlay">Basic Usae</option>
+            <option value="ignoreElements">Ignore Elements</option>
+            <option value="manualTrigger">Custom Animation</option>
+            <option value="saveState">Save Visibilitie</option>
+            <option value="ajaxContent">Ajax Content Loading</option>
+        </select>
+
         <input id="showOverlayButton" type="submit" value="show overlay">
         <input id="ignoreButton" type="submit" value="swag">
         <div style="margin-top: 3px;">

@@ -12,6 +12,7 @@
                 $.cookie('mlIsOverlayVisible', isOverlayVisible);
             }
         }
+
     }
 
     function mlShowOverlay(overlay) {
@@ -28,7 +29,6 @@
             }
         }
     }
-
 
     var methods = {
         init : function(options) {
@@ -54,10 +54,12 @@
                     settings.ignore += ",";
                 }
                 settings.ignore += settings.target;
+
                 $(_this).data('mlOverlaySettings', settings);
                 $(_this).data('mlIsOverlayVisible', false);
 
-                $(settings.target).click(function() {
+                $(settings.target).unbind('click.mlOverlay');
+                $(settings.target).bind('click.mlOverlay', function() {
                     var isOverlayVisible = $(_this).data('mlIsOverlayVisible');
 
                     if(isOverlayVisible) {
@@ -69,16 +71,18 @@
                     }
                 });
 
+                $(document).unbind('click.mlOverlay');
                 if (settings.closeOnOutsideClick) {
-                    $(document).click(function(e) {
+                    $(document).bind('click.mlOverlay', function(e) {
                         if ($(e.target).closest(settings.ignore).length == 0 && $(e.target).closest(_this).length == 0) {
                             mlHideOverlay(_this);
                         }
                     });
                 }
 
+                $(document).unbind('keyup.mlOverlay');
                 if(settings.closeOnEsc) {
-                    $(document).keyup(function(e) {
+                    $(document).bind('keyup.mlOverlay', function(e) {
                         if (e.keyCode == 27) {
                             mlHideOverlay(_this);
                         }
@@ -92,7 +96,7 @@
                             mlShowOverlay(_this);
                         }
                     } else {
-                        throw 'To save the overlay state you need the jquery.cookie plugin. You can download it here: https://github.com/carhartl/jquery-cookie';
+                        settings.saveState = false;
                     }
                 }
             });
