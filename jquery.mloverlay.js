@@ -1,5 +1,5 @@
 (function ( $ ) {
-    function mlHideOverlay(overlay) {
+    function hideOverlay(overlay) {
         var isOverlayVisible = $(overlay).data('mlIsOverlayVisible');
 
         if(isOverlayVisible) {
@@ -15,7 +15,7 @@
 
     }
 
-    function mlShowOverlay(overlay) {
+    function showOverlay(overlay) {
         var isOverlayVisible = $(overlay).data('mlIsOverlayVisible');
 
         if(!isOverlayVisible) {
@@ -38,9 +38,9 @@
                 var settings = $.extend({
                     ignore: '',
                     target: '',
-                    closeOnOutsideClick: true,
-                    closeOnTargetClick: true,
-                    closeOnEsc: true,
+                    hideOnOutsideClick: true,
+                    hideOnTargetClick: true,
+                    hideOnEsc: true,
                     saveState: false,
 
                     onShow: function(overlay) {
@@ -69,26 +69,26 @@
                     var isOverlayVisible = $(_this).data('mlIsOverlayVisible');
 
                     if(isOverlayVisible) {
-                        if(settings.closeOnTargetClick) {
-                            mlHideOverlay(_this);
+                        if(settings.hideOnTargetClick) {
+                            hideOverlay(_this);
                         }
                     } else {
-                        mlShowOverlay(_this);
+                        showOverlay(_this);
                     }
                 });
 
-                if (settings.closeOnOutsideClick) {
+                if (settings.hideOnOutsideClick) {
                     $(document).bind('click.mlOverlay', function(e) {
                         if ($(e.target).closest(settings.ignore).length == 0 && $(e.target).closest(_this).length == 0) {
-                            mlHideOverlay(_this);
+                            hideOverlay(_this);
                         }
                     });
                 }
 
-                if(settings.closeOnEsc) {
+                if(settings.hideOnEsc) {
                     $(document).bind('keyup.mlOverlay', function(e) {
                         if (e.keyCode == 27) {
-                            mlHideOverlay(_this);
+                            hideOverlay(_this);
                         }
                     });
                 }
@@ -97,7 +97,7 @@
                     if($.cookie != null) {
                         var isOverlayVisible = $.cookie('mlIsOverlayVisible');
                         if(isOverlayVisible == 'true') {
-                            mlShowOverlay(_this);
+                            showOverlay(_this);
                         }
                     } else {
                         settings.saveState = false;
@@ -107,12 +107,12 @@
         },
         show : function() {
             this.each(function() {
-                mlShowOverlay(this);
+                showOverlay(this);
             });
         },
         hide : function() {
             this.each(function() {
-                mlHideOverlay(this);
+                hideOverlay(this);
             });
         }
     };
