@@ -7,10 +7,6 @@
         if(settings._isVisible) {
             settings.onHide(overlay);
             settings._isVisible = false;
-
-            if(settings.saveState) {
-                $.cookie(PLUGIN_IDENTIFIER+'IsVisible', settings._isVisible);
-            }
         }
 
     }
@@ -21,10 +17,6 @@
         if(!settings._isVisible) {
             settings.onShow(overlay);
             settings._isVisible = true;
-
-            if(settings.saveState) {
-                $.cookie(PLUGIN_IDENTIFIER+'IsVisible', settings._isVisible);
-            }
         }
     }
 
@@ -39,7 +31,6 @@
                     hideOnOutsideClick: true,
                     hideOnTargetClick: true,
                     hideOnEsc: true,
-                    saveState: false,
 
                     onShow: function(overlay) {
                         $(overlay).fadeIn();
@@ -84,17 +75,6 @@
                         }
                     });
                 }
-
-                if(settings.saveState) {
-                    if($.cookie != null) {
-                        var isOverlayVisible = $.cookie(PLUGIN_IDENTIFIER+'IsVisible');
-                        if(isOverlayVisible == 'true') {
-                            showOverlay(_this);
-                        }
-                    } else {
-                        settings.saveState = false;
-                    }
-                }
             });
         },
 
@@ -106,9 +86,6 @@
                     $(document).unbind('click.mlOverlay');
                     $(document).unbind('keyup.mlOverlay');
                     $(this).removeData();
-                    if(settings.saveState) {
-                        $.cookie(PLUGIN_IDENTIFIER+'IsVisible', null);
-                    }
                 }
             });
         },
