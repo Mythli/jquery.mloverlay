@@ -48,7 +48,7 @@
                 settings.ignore += settings.target;
                 $(_this).data(PLUGIN_IDENTIFIER, settings);
 
-                $(settings.target).bind('click.mlOverlay', function() {
+                $(settings.target).bind('click.'+PLUGIN_IDENTIFIER, function() {
                     var isOverlayVisible = settings._isVisible;
 
                     if(isOverlayVisible) {
@@ -61,7 +61,7 @@
                 });
 
                 if (settings.hideOnOutsideClick) {
-                    $(document).bind('click.mlOverlay', function(e) {
+                    $(document).bind('click.'+PLUGIN_IDENTIFIER, function(e) {
                         if ($(e.target).closest(settings.ignore).length == 0 && $(e.target).closest(_this).length == 0) {
                             hideOverlay(_this);
                         }
@@ -69,7 +69,7 @@
                 }
 
                 if(settings.hideOnEsc) {
-                    $(document).bind('keyup.mlOverlay', function(e) {
+                    $(document).bind('keyup.'+PLUGIN_IDENTIFIER, function(e) {
                         if (e.keyCode == 27) {
                             hideOverlay(_this);
                         }
@@ -82,9 +82,9 @@
             this.each(function() {
                 var settings = $(this).data(PLUGIN_IDENTIFIER);
                 if(settings) {
-                    $(settings.target).unbind('click.mlOverlay');
-                    $(document).unbind('click.mlOverlay');
-                    $(document).unbind('keyup.mlOverlay');
+                    $(settings.target).unbind('click.'+PLUGIN_IDENTIFIER);
+                    $(document).unbind('click.'+PLUGIN_IDENTIFIER);
+                    $(document).unbind('keyup.'+PLUGIN_IDENTIFIER);
                     $(this).removeData();
                 }
             });
@@ -110,7 +110,7 @@
                 return methods.init.apply( this, arguments );
             }
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.mlOverlay' );
+            $.error( 'Method ' +  method + ' does not exist on jQuery.'+PLUGIN_IDENTIFIER );
         }
     };
 }( jQuery ));
