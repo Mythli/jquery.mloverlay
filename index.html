@@ -4,7 +4,6 @@
     <title>jquery.mloverlay demo</title>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="jquery.cookie.js"></script>
     <script type="text/javascript" src="jquery.mloverlay.js"></script>
 
     <script type="text/javascript">
@@ -43,13 +42,6 @@
                         }
                     });
                 },
-                saveState: function() {
-                    $('#overlay').mlOverlay('destroy');
-                    $('#overlay').mlOverlay({
-                        target: '#showOverlayButton',
-                        saveState: true
-                    });
-                },
                 ajaxContent: function() {
                     $('#overlay').mlOverlay('destroy');
                     $('#overlay').mlOverlay({
@@ -72,7 +64,7 @@
                 exampleOverlays[$(this).val()]();
             });
 
-            exampleOverlays.saveState();
+            exampleOverlays.basicOverlay();
         });
     </script>
     <style>
@@ -102,7 +94,6 @@
             <option value="ignoreElements">Ignore Elements</option>
             <option value="manualTrigger">Manual Trigger</option>
             <option value="customAnimation">Custom Animation</option>
-            <option value="saveState">Save Visibilitie</option>
             <option value="ajaxContent">Ajax Content Loading</option>
         </select>
 

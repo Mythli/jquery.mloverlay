@@ -11,11 +11,6 @@ Include script *after* the jQuery library (unless you are packaging scripts some
 ```html
 <script src="/path/to/jquery.mloverlay.js"></script>
 ```
-Include jquery.cookie *before* jquery.mloverlay if you want to save overlay visibility:
-```html
-<script src="/path/to/jquery.cookie.js"></script>
-<script src="/path/to/jquery.mloverlay.js"></script>
-```
 
 **Do not include the script directly from GitHub (http://raw.github.com/...).** The file is being served as text/plain and as such being blocked
 in Internet Explorer on Windows 7 for instance (because of the wrong MIME type). Bottom line: GitHub is not a CDN.
@@ -23,7 +18,6 @@ in Internet Explorer on Windows 7 for instance (because of the wrong MIME type).
 ## Features
 
 - Developer friendly - Extensible through callbacks to make anything (gallery slideshow's, video-conferencing, ajax, etc.) possible
-- User friendly - Restoring previously shown overlays through use of cookies
 - Designer friendly - Use *your* HTML+CSS for Layout and Styling
 - Translator/i18n friendly - No hardcoded English strings 
 - Support of multiple overlays on one page
@@ -57,14 +51,11 @@ Boolean. If true clicks outside the overlay will hide it.
 Boolean. If true clicks on the *target* toggle the overlay.  
 
 **hideOnEsc** = *true;*  
-Boolean. If true pressing the escape key will hide the overlay.  
-
-**saveState** = *true;*  
-Boolean. If true overlay visibility is saved in a cookie variable.  
+Boolean. If true pressing the escape key will hide the overlay.
 
 ### Functions
 
-**destroy** *$.mlOverlay('destroy');*
+**destroy** *$.mlOverlay('destroy');*  
 Destroys everything associated with the plugin (state, registered event listeners, cookies)
 
 **show** *$.mlOverlay('show');*  

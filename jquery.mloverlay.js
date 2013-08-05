@@ -7,10 +7,6 @@
         if(settings._isVisible) {
             settings.onHide(overlay);
             settings._isVisible = false;
-
-            if(settings.saveState) {
-                $.cookie(PLUGIN_IDENTIFIER+'IsVisible', settings._isVisible);
-            }
         }
 
     }
@@ -21,10 +17,6 @@
         if(!settings._isVisible) {
             settings.onShow(overlay);
             settings._isVisible = true;
-
-            if(settings.saveState) {
-                $.cookie(PLUGIN_IDENTIFIER+'IsVisible', settings._isVisible);
-            }
         }
     }
 
@@ -39,7 +31,6 @@
                     hideOnOutsideClick: true,
                     hideOnTargetClick: true,
                     hideOnEsc: true,
-                    saveState: false,
 
                     onShow: function(overlay) {
                         $(overlay).fadeIn();
@@ -57,7 +48,7 @@
                 settings.ignore += settings.target;
                 $(_this).data(PLUGIN_IDENTIFIER, settings);
 
-                $(settings.target).bind('click.mlOverlay', function() {
+                $(settings.target).bind('click.'+PLUGIN_IDENTIFIER, function() {
                     var isOverlayVisible = settings._isVisible;
 
                     if(isOverlayVisible) {
@@ -70,7 +61,7 @@
                 });
 
                 if (settings.hideOnOutsideClick) {
-                    $(document).bind('click.mlOverlay', function(e) {
+                    $(document).bind('click.'+PLUGIN_IDENTIFIER, function(e) {
                         if ($(e.target).closest(settings.ignore).length == 0 && $(e.target).closest(_this).length == 0) {
                             hideOverlay(_this);
                         }
@@ -78,22 +69,11 @@
                 }
 
                 if(settings.hideOnEsc) {
-                    $(document).bind('keyup.mlOverlay', function(e) {
+                    $(document).bind('keyup.'+PLUGIN_IDENTIFIER, function(e) {
                         if (e.keyCode == 27) {
                             hideOverlay(_this);
                         }
                     });
-                }
-
-                if(settings.saveState) {
-                    if($.cookie != null) {
-                        var isOverlayVisible = $.cookie(PLUGIN_IDENTIFIER+'IsVisible');
-                        if(isOverlayVisible == 'true') {
-                            showOverlay(_this);
-                        }
-                    } else {
-                        settings.saveState = false;
-                    }
                 }
             });
         },
@@ -102,13 +82,10 @@
             this.each(function() {
                 var settings = $(this).data(PLUGIN_IDENTIFIER);
                 if(settings) {
-                    $(settings.target).unbind('click.mlOverlay');
-                    $(document).unbind('click.mlOverlay');
-                    $(document).unbind('keyup.mlOverlay');
+                    $(settings.target).unbind('click.'+PLUGIN_IDENTIFIER);
+                    $(document).unbind('click.'+PLUGIN_IDENTIFIER);
+                    $(document).unbind('keyup.'+PLUGIN_IDENTIFIER);
                     $(this).removeData();
-                    if(settings.saveState) {
-                        $.cookie(PLUGIN_IDENTIFIER+'IsVisible', null);
-                    }
                 }
             });
         },
@@ -133,7 +110,7 @@
                 return methods.init.apply( this, arguments );
             }
         } else {
-            $.error( 'Method ' +  method + ' does not exist on jQuery.mlOverlay' );
+            $.error( 'Method ' +  method + ' does not exist on jQuery.'+PLUGIN_IDENTIFIER );
         }
     };
 }( jQuery ));
