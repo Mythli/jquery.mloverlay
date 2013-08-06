@@ -28,7 +28,7 @@ in Internet Explorer on Windows 7 for instance (because of the wrong MIME type).
 
 1.  **Add overlay placeholder(s) to your page.** Overlay placeholders are usually hidden \<div> containers. CSS is used for styling and positioning. Dialogs are displayed("shown") when a trigger event occurs.
 
-2.  **Initialize your overlay(s).** mlOverlay must be called on each dialog element before it can be shown using the *$.mlOverlay()* function. You can customize your overlay by passing parameters as an argument (e.g. *$('#overlay').mlOverlay({saveState: true, trigger: '#showOverlayButton'});*).  
+2.  **Initialize your overlay(s).** mlOverlay must be called on each dialog element before it can be shown using the *$.mlOverlay()* function. You can customize your overlay by passing parameters as an argument (e.g. *$('#overlay').mlOverlay({trigger: '#showOverlayButton'});*).  
 
 3.  **Trigger your overlay.** Overlays are automatically shown when a "trigger" element is clicked. You can also manually trigger a overlay by executing the *$.mlOverlay('show')* function on it.
 
