@@ -69,11 +69,27 @@
     </script>
     <style>
         body {
-            background-color: #25567B;
+            margin: 0px;
+            padding: 0px;
+            background-color: #EBEBEB;
+            border-bottom: 1px solid #e8e8e8;
         }
 
-        #container {
-            margin: 30px;
+        #topBar {
+            height: 25px;
+            padding: 7px;
+            padding-left: 15px;
+            background-color: #F1F1F1;
+        }
+
+        #socialCodingButtons {
+            float: right;
+        }
+
+        #ajaxContent {
+            width: 800px;
+            margin: auto;
+            margin-top: 15px;
         }
 
         #overlay {
@@ -81,14 +97,14 @@
             display: none;
             width: 400px;
             padding: 5px;
-
-            color: #66A3D2;
-            background-color: #033E6B;
+            background-color: #F1F1F1;
+            border: solid 1px #C9312C;
             border-radius: 5px;
+        }
     </style>
 </head>
 <body>
-    <div id="container">
+    <div id="topBar">
         <select id="usageType" name="usageType">
             <option value="basicOverlay">Basic Usage</option>
             <option value="ignoreElements">Ignore Elements</option>
@@ -99,23 +115,31 @@
 
         <input id="showOverlayButton" type="submit" value="show overlay">
         <input id="ignoredButton" style="display: none;" type="submit" value="ignored button">
-        <div style="margin-top: 3px;">
-            <div id="overlay">
-                <p> Because I'm just ... um .... I don't know. Why give an interview when
-                    you can leave a warning, you know? And one of those stupid mottoes, Alex,
-                    is 'Don't be special. Be one of us.' News flash! I am special, and I'll
-                    never be one of you! ... There it is.</p>
+        <div id="socialCodingButtons">
+            <iframe src="http://ghbtns.com/github-btn.html?user=Mythli&repo=jquery.mloverlay&type=watch&count=true"
+                    allowtransparency="true" frameborder="0" scrolling="0" width="80" height="20"></iframe>
+            <iframe src="http://ghbtns.com/github-btn.html?user=mythli&repo=jquery.mloverlay&type=fork&count=true"
+                    allowtransparency="true" frameborder="0" scrolling="0" width="80" height="20"></iframe>
+            <iframe src="http://ghbtns.com/github-btn.html?user=Mythli&repo=jquery.mloverlay&type=follow&count=true"
+                    allowtransparency="true" frameborder="0" scrolling="0" width="140" height="20"></iframe>
+        </div>
+    </div>
+    <div style="margin-top: -3px; margin-left: 7px;">
+        <div id="overlay">
+            <p> Because I'm just ... um .... I don't know. Why give an interview when
+                you can leave a warning, you know? And one of those stupid mottoes, Alex,
+                is 'Don't be special. Be one of us.' News flash! I am special, and I'll
+                never be one of you! ... There it is.</p>
 
-                <p>You know, he might be Nails, but I'm frickin' bayonets, you know? I am
-                    battle-tested bayonets, bro.  But ... whatever. I agreed to do it. There's
-                    just one deal point that Jim Robinson - a wonderful man at Morgan Creek, a
-                    great company - need to work out is they want me in it. If they do, it's a
-                    smash. If they don't, it's a turd that opens on a tugboat.</p>
+            <p>You know, he might be Nails, but I'm frickin' bayonets, you know? I am
+                battle-tested bayonets, bro.  But ... whatever. I agreed to do it. There's
+                just one deal point that Jim Robinson - a wonderful man at Morgan Creek, a
+                great company - need to work out is they want me in it. If they do, it's a
+                smash. If they don't, it's a turd that opens on a tugboat.</p>
 
-                <p>You know, he might be Nails, but I'm frickin' bayonets, you know? I am
-                    battle-tested bayonets, bro. Yeah, but I can't use the word 'sober' because
-                    that's a term from 'those people', and I have cleansed myself.</p>
-            </div>
+            <p>You know, he might be Nails, but I'm frickin' bayonets, you know? I am
+                battle-tested bayonets, bro. Yeah, but I can't use the word 'sober' because
+                that's a term from 'those people', and I have cleansed myself.</p>
         </div>
     </div>
 </body>
