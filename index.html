@@ -3,6 +3,42 @@
 <head>
     <title>jquery.mloverlay demo</title>
 
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-color: #EBEBEB;
+        }
+
+        #topBar {
+            height: 25px;
+            padding: 7px;
+            padding-left: 15px;
+            background-color: #F1F1F1;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        #socialCodingButtons {
+            float: right;
+        }
+
+        #ajaxContent {
+            width: 800px;
+            margin: auto;
+            margin-top: 15px;
+        }
+
+        #overlay {
+            position: absolute;
+            display: none;
+            width: 400px;
+            padding: 5px;
+            background-color: #F1F1F1;
+            border: solid 1px #E2E2E2;
+            border-radius: 5px;
+        }
+    </style>
+
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script type="text/javascript" src="jquery.mloverlay.js"></script>
 
@@ -67,41 +103,6 @@
             exampleOverlays.basicOverlay();
         });
     </script>
-    <style>
-        body {
-            margin: 0px;
-            padding: 0px;
-            background-color: #EBEBEB;
-            border-bottom: 1px solid #e8e8e8;
-        }
-
-        #topBar {
-            height: 25px;
-            padding: 7px;
-            padding-left: 15px;
-            background-color: #F1F1F1;
-        }
-
-        #socialCodingButtons {
-            float: right;
-        }
-
-        #ajaxContent {
-            width: 800px;
-            margin: auto;
-            margin-top: 15px;
-        }
-
-        #overlay {
-            position: absolute;
-            display: none;
-            width: 400px;
-            padding: 5px;
-            background-color: #F1F1F1;
-            border: solid 1px #E2E2E2;
-            border-radius: 5px;
-        }
-    </style>
 </head>
 <body>
     <div id="topBar">
