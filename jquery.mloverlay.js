@@ -22,30 +22,30 @@
 
     var methods = {
         init : function(options) {
+            var settings = $.extend({
+                ignore: '',
+                target: '',
+                hideOnOutsideClick: true,
+                hideOnTargetClick: true,
+                hideOnEsc: true,
+
+                onShow: function(overlay) {
+                    $(overlay).fadeIn();
+                },
+                onHide: function(overlay) {
+                    $(overlay).fadeOut();
+                },
+
+                _isVisible : false
+            }, options);
+
+            if (settings.ignore.length > 0) {
+                settings.ignore += ",";
+            }
+            settings.ignore += settings.target;
+
             this.each(function() {
                 var _this = this;
-
-                var settings = $.extend({
-                    ignore: '',
-                    target: '',
-                    hideOnOutsideClick: true,
-                    hideOnTargetClick: true,
-                    hideOnEsc: true,
-
-                    onShow: function(overlay) {
-                        $(overlay).fadeIn();
-                    },
-                    onHide: function(overlay) {
-                        $(overlay).fadeOut();
-                    },
-
-                    _isVisible : false
-                }, options);
-
-                if (settings.ignore.length > 0) {
-                    settings.ignore += ",";
-                }
-                settings.ignore += settings.target;
                 $(_this).data(PLUGIN_IDENTIFIER, settings);
 
                 $(settings.target).bind('click.'+PLUGIN_IDENTIFIER, function() {
