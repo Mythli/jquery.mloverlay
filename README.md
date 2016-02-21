@@ -5,7 +5,7 @@ A simple, lightweight jQuery plugin for showing modal less overlays.
 
 [Try it out now!](http://mloverlay.mythli.net)
 
-This Plugin is not maintained anymore.
+## This Plugin is not maintained anymore.
 
 ## Installation
 
